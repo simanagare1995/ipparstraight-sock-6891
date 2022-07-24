@@ -1,0 +1,116 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signin</title>
+    <style>
+        #nav{
+            
+            border: 1px solid grey;
+            margin: auto;
+            display: grid;
+            justify-content: center;
+            justify-items: center;
+            border-radius: 7px;
+            padding: 12px;
+            margin-bottom: 30px;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+        #sign{
+            width:20%;
+            margin:auto;
+            padding: 10px 20px 20px 30px;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+        #sign>div{
+            display: flex;
+           
+        }
+        #sign>div>p{
+        margin-left: 10px;
+        }
+        #sign>div+p{
+            font-size: 13px;
+        }
+         .input{
+            width:80%;
+      margin-top: 20px;
+        padding: 15px 30px 15px 20px;  
+          margin-left: 10px;   
+        border:1px solid grey;
+        border-radius: 10px; 
+    } 
+        #button{
+        width:150px;
+        border:0px;
+        border-radius: 5px;
+        padding:15px 30px 15px 30px;
+        background-color: rgb(6, 6, 216);
+     color:white;
+     margin-left: 20%;
+     font-size: 15px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <img src="https://www.expedia.co.in/_dms/header/logo.svg?locale=en_GB&siteid=27&2"alt="error">
+    </div>
+    <form id="signin">
+    <div id="sign">
+    <h1>Sign in</h1>
+    <input type="email" class="input" id="email" placeholder="Email">
+    <input type="password"class="input" id="password" placeholder="Password">
+    <div>
+    <input type="checkbox">
+    <p>Keep me signed in</p>
+    </div>
+    <p>
+        Selecting this checkbox will keep you signed into your account on this device until you sign out. Do not select this on shared devices.
+By signing in, I agree to the Expedia <a href="">Terms and Conditions, Privacy Statement </a>and<a href="">Expedia Rewards Terms and Conditions.</a> 
+    </p>
+   <input type="submit" id="button" placeholder="Search">
+</form>
+</div>
+</body>
+</html>
+<script>
+ let form=document.querySelector("#signin");
+    form.addEventListener("submit", myFun)
+    let dataUser=JSON.parse(localStorage.getItem("userData"))||[];
+   
+    function myFun(event) {
+        event.preventDefault();
+       let data={
+           Email:form.email.value,
+        
+           Password:form.password.value,
+       }
+     
+       if(checkSingin(data.Email,data.Password)===true){
+          
+           
+           localStorage.setItem("signIn",JSON.stringify(data))
+           alert("Sign In Succesfull ")
+          
+           window.location.href="index.html"
+        }else{
+           alert("Wrong Username or Password!")
+       }
+    }
+    function checkSingin(Email,Password){
+      let filterd=dataUser.filter(function(elem){
+        return elem.personEmail===Email && elem.personPassword===Password
+      })
+     
+      
+      if(filterd.length>0){
+          return true;
+      }else {
+           return false;
+        }
+    }
+
+</script>

@@ -1,0 +1,28 @@
+
+#footer{
+    width:90%;
+    display:grid;
+    margin:auto;
+    grid-template-columns:repeat(5,auto) ;
+    gap:10px;
+}
+#footer>div>ul>p{
+    color:rgb(12, 12, 215);
+}
+#footer>div>ul>p:hover{
+text-decoration: underline;
+}
+#footer>div>img{
+    width:100%;
+    margin-top: 20px;
+}
+#bottom{
+    width:98%;
+text-align: center;
+}
+#bottom>img{
+    margin-left: 10%;
+}
+    #bottom>p{
+        font-size:13px;
+    }
